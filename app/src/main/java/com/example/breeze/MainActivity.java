@@ -13,6 +13,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.breeze.organizador.OrganizadorHomeActivity;
+import com.example.breeze.usuario.UsuarioHomeActivity;
+
 public class MainActivity extends AppCompatActivity {
 
 

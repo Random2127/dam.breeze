@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Breeze"
         tools:targetApi="31">
         <activity
-            android:name=".OrganizadorHomeActivity"
+            android:name=".organizador.OrganizadorHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".UsuarioHomeActivity"
+            android:name=".usuario.UsuarioHomeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
