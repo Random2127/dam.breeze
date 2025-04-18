@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorCompletado">#70D100</color> <!-- Yellow when filled -->
+    <color name="colorVacio">#FFFFFF</color>  <!-- White when empty -->
+    <color name="colorMatch">#009503</color> <!-- Green when passwords match -->
+    <color name="colorNoMatch">#A01100</color>  <!-- Red when passwords do not match -->
 </resources>

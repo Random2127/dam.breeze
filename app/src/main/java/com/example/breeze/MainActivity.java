@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected EditText caja1;
     protected EditText caja2;
     protected Button boton1;
+    protected TextView texto1;
 
     protected String contenidoCaja1;
     protected String contenidoCaja2;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         caja1 = (EditText) findViewById(R.id.caja1_main);
         caja2 = (EditText) findViewById(R.id.caja2_main);
         boton1 = (Button) findViewById(R.id.boton1_main);
+        texto1 = (TextView) findViewById(R.id.texto1_main);
+
 
         gbd = new GestorBaseDatos(this);
 
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MainActivity.this, "Login correcto como " + role, Toast.LENGTH_SHORT).show();
 
-                    if (role.equalsIgnoreCase("usuario")) {
+                    if (role.equalsIgnoreCase("cliente")) {
                         pasarPantalla = new Intent(MainActivity.this, UsuarioHomeActivity.class);
                         finish();
                         startActivity(pasarPantalla);
@@ -72,5 +76,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        texto1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pasarPantalla = new Intent(MainActivity.this, Registro.class);
+                finish();
+                startActivity(pasarPantalla);
+            }
+        });
+
+
     }
 }
