@@ -2,6 +2,7 @@ package com.example.breeze;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,23 +56,23 @@ public class MainActivity extends AppCompatActivity {
         boton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contenidoCaja1 = caja1.getText().toString();
-                contenidoCaja2 = caja2.getText().toString();
+                contenidoCaja1 = caja1.getText().toString().trim();
+                contenidoCaja2 = caja2.getText().toString().trim();
                 role = gbd.comprobarCredenciales(contenidoCaja1,contenidoCaja2);
 
-                if (role == null) {
+                if (role == null || role.isEmpty()) {
                     Toast.makeText(MainActivity.this,"Credenciales no válidas", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Login correcto como " + role, Toast.LENGTH_SHORT).show();
 
-                    if (role.equalsIgnoreCase("cliente")) {
+                    if (role != null && role.equalsIgnoreCase("cliente")) {
                         pasarPantalla = new Intent(MainActivity.this, UsuarioHomeActivity.class);
-                        finish();
                         startActivity(pasarPantalla);
-                    } else if (role.equalsIgnoreCase("organizador")) {
+                        finish();
+                    } else if (role != null && role.equalsIgnoreCase("organizador")) {
                         pasarPantalla = new Intent(MainActivity.this, OrganizadorHomeActivity.class);
-                        finish();
                         startActivity(pasarPantalla);
+                        finish();
                     }
                 }
             }

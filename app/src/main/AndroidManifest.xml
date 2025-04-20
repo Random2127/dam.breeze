@@ -17,7 +17,7 @@
             android:exported="false" />
         <activity
             android:name=".organizador.OrganizadorHomeActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".usuario.UsuarioHomeActivity"
             android:exported="false" />

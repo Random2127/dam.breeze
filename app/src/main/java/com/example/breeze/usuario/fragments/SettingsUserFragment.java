@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.breeze.R;
 
-public class SettingsFragment extends Fragment {
+public class SettingsUserFragment extends Fragment {
 
-    public SettingsFragment() {
+    public SettingsUserFragment() {
         // Required empty public constructor
     }
 
