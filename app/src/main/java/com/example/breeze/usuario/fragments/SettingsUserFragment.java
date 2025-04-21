@@ -20,6 +20,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.breeze.R;
+import com.example.breeze.Utils;
 
 public class SettingsUserFragment extends Fragment {
 
@@ -38,8 +39,9 @@ public class SettingsUserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings_user, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings_user, container, false);
+        Utils.cambioSizeTextViews(view, getContext());
+        return view;
     }
 
     // carga despues de onCreate cuando esta listo
