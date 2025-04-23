@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.breeze.R;
 import com.example.breeze.Utils;
@@ -28,6 +29,7 @@ public class SettingsUserFragment extends Fragment {
     protected Switch switchDark;
     protected Spinner spinner1;
     protected TextView texto2;
+    protected Switch notificaciones;
     protected Button boton1;
     protected Button boton2;
 
@@ -48,6 +50,8 @@ public class SettingsUserFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Modo oscuro
         switchDark = view.findViewById(R.id.switch_dark_mode);
         SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getContext());
         switchDark.setChecked(pref.getBoolean("dark_mode", false));
@@ -56,7 +60,7 @@ public class SettingsUserFragment extends Fragment {
             AppCompatDelegate.setDefaultNightMode(isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
         });
 
-
+        // Tamaño fuentes
         spinner1 = view.findViewById(R.id.spinner1_user_settings);
         String [] sizes = {"Pequeña", "Mediana", "Grande"};
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, sizes);
@@ -78,10 +82,10 @@ public class SettingsUserFragment extends Fragment {
                         sizeSp = 12f;
                         break;
                     case 1:
-                        sizeSp = 16f;
+                        sizeSp = 18f;
                         break;
                     case 2:
-                        sizeSp = 20f;
+                        sizeSp = 24f;
                         break;
                     default:
                         sizeSp = 16f;
@@ -95,6 +99,17 @@ public class SettingsUserFragment extends Fragment {
             }
         });
 
+        // Notificaciones
+        notificaciones = (Switch) view.findViewById(R.id.switch_notificaciones);
+        // Notificaciones permitidas por defecto
+        notificaciones.setChecked(pref.getBoolean("notificaciones_enabled", true));
+        notificaciones.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Cambio de estado
+            pref.edit().putBoolean("notificaciones_enabled", isChecked).apply();
+            // String para el Toast
+            String mensajeNotificacion = isChecked ? "Notificaciones habilitades" : "Notificaciones desabilitadas";
+            Toast.makeText(getContext(), mensajeNotificacion, Toast.LENGTH_SHORT).show();
+        });
     }
 
 }

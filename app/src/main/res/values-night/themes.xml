@@ -3,5 +3,12 @@
     <style name="Base.Theme.Breeze" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorSurfaceContainer">@color/colorSurfaceContainer_dark</item>
+        <item name="colorSurface">@color/colorSurface_dark</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary_dark</item>
+        <item name="colorOnBackground">@color/colorOnBackground_dark</item>
+        <item name="colorOnSurface">@color/colorOnSurface_dark</item>
     </style>
 </resources>

@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="colorCompletado">#70D100</color> <!-- Yellow when filled -->
-    <color name="colorVacio">#FFFFFF</color>  <!-- White when empty -->
-    <color name="colorMatch">#009503</color> <!-- Green when passwords match -->
-    <color name="colorNoMatch">#A01100</color>  <!-- Red when passwords do not match -->
+    <!-- Light Mode -->
+    <color name="colorPrimary">#1DCD9F</color> <!-- Aqua -->
+    <color name="colorPrimaryVariant">#169976</color> <!-- Emerald -->
+    <color name="colorSecondary">#169976</color> <!-- Emerald -->
+    <color name="colorSurfaceContainer">#FFFFFF</color> <!-- Light background -->
+    <color name="colorSurface">#F0F0F0</color> <!-- Light surface -->
+    <color name="colorOnPrimary">#FFFFFF</color> <!-- White on primary -->
+    <color name="colorOnBackground">#222222</color> <!-- Dark text on light background -->
+    <color name="colorOnSurface">#222222</color> <!-- Dark text on light surface -->
+    <!-- Dark Mode -->
+    <color name="colorSurfaceContainer_dark">#222222</color> <!-- Dark background -->
+    <color name="colorSurface_dark">#000000</color> <!-- Dark surface -->
+    <color name="colorOnPrimary_dark">#000000</color> <!-- Dark text on primary -->
+    <color name="colorOnBackground_dark">#5D5F5F</color> <!-- White text on dark background -->
+    <color name="colorOnSurface_dark">#717171</color> <!-- White text on dark surface -->
+    <!-- Register -->
+    <color name="colorCompletado">#70D100</color>
+    <color name="colorVacio">#FFFFFF</color>
+    <color name="colorMatch">#009503</color>
+    <color name="colorNoMatch">#A01100</color>
 </resources>

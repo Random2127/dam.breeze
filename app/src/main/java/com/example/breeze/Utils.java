@@ -17,7 +17,7 @@ public class Utils {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         int sizeIndice = preferences.getInt("font_size_index", 1);
         // Convertir el indice en sp
-        // Cambio tamaños a algo más exagerado para poder èrcibir la diferencia facil
+        // Cambio tamaños a algo más exagerado para poder percibir la diferencia fácilmente
         float sizeInSp = (sizeIndice == 0) ? 12f : (sizeIndice == 1) ? 18f : 24f;
         // Hacemos los cambios de forma recursiva
         aplicarRecursivo(root, sizeInSp);
@@ -37,6 +37,8 @@ public class Utils {
             }
         }
     }
+
+    
 
 
 
