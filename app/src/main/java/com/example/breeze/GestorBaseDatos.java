@@ -21,8 +21,7 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE ticket(ticketID INTEGER PRIMARY KEY AUTOINCREMENT, eventoID INTEGER, clienteID INTEGER, precio REAL, fechaCompra TEXT, FOREIGN KEY (eventoID) REFERENCES evento(eventoID), FOREIGN KEY (clienteID) REFERENCES user(id))");
         db.execSQL("CREATE TABLE feedback(feedbackID INTEGER PRIMARY KEY AUTOINCREMENT, clienteID INTEGER, eventoID INTEGER, comentario TEXT, rating INTEGER, FOREIGN KEY (clienteID) REFERENCES user(id), FOREIGN KEY (eventoID) REFERENCES event(eventoID))");
 
-        db.execSQL("INSERT INTO user VALUES (null, 'userAdmin','user@prueba.com', 'password', 'cliente')");
-        db.execSQL("INSERT INTO user VALUES (null, 'orgAdmin','orga@prueba.com', 'password', 'organizador')");
+        db.execSQL("INSERT INTO user VALUES (null, 'org','orga@prueba.com', 'org', 'organizador')");
         db.execSQL("INSERT INTO user VALUES (null, 'user','user@prueba.com', 'user', 'cliente')");
     }
 

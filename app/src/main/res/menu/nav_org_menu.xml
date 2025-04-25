@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--Items en la navbar inferior-->
     <item
         android:id="@+id/home"
         android:icon="@drawable/home"
@@ -20,10 +21,5 @@
         android:id="@+id/chat"
         android:icon="@drawable/chat"
         android:title="Chat" />
-
-    <item
-        android:id="@+id/settings"
-        android:icon="@drawable/settings"
-        android:title="Settings" />
 
 </menu>
