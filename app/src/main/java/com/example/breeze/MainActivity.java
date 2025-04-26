@@ -1,6 +1,7 @@
 package com.example.breeze;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -64,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Credenciales no válidas", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Login correcto como " + role, Toast.LENGTH_SHORT).show();
+
+                    // Guardamos el rol para controlar pantallas
+                    SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("user_role", role);
+                    editor.apply();
 
                     if (role != null && role.equalsIgnoreCase("cliente")) {
                         pasarPantalla = new Intent(MainActivity.this, UsuarioHomeActivity.class);
