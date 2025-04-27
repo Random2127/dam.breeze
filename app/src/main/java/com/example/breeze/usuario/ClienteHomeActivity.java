@@ -15,14 +15,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.breeze.R;
 import com.example.breeze.SettingsActivity;
-import com.example.breeze.usuario.fragments.ChatUserFragment;
-import com.example.breeze.usuario.fragments.HomeUserFragment;
+import com.example.breeze.usuario.fragments.ChatClienteFragment;
+import com.example.breeze.usuario.fragments.HomeClienteFragment;
 import com.example.breeze.usuario.fragments.SearchFragment;
 import com.example.breeze.usuario.fragments.TicketFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class UsuarioHomeActivity extends AppCompatActivity {
+public class ClienteHomeActivity extends AppCompatActivity {
 
     protected Intent pasarPantalla;
 
@@ -42,7 +42,7 @@ public class UsuarioHomeActivity extends AppCompatActivity {
         // Esto me da full-screen
         EdgeToEdge.enable(this);
         // Determina el layout general
-        setContentView(R.layout.activity_usuario_home);
+        setContentView(R.layout.activity_cliente_home);
         // Move this OUTSIDE the insets block
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
@@ -54,13 +54,13 @@ public class UsuarioHomeActivity extends AppCompatActivity {
             return insets;
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeUserFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeClienteFragment()).commit();
 
         // navbar inferior
         BottomNavigationView nav = findViewById(R.id.nav_user_menu);
         nav.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home){
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeUserFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeClienteFragment()).commit();
                 return true;
             } else if (item.getItemId() == R.id.search) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SearchFragment()).commit();
@@ -69,7 +69,7 @@ public class UsuarioHomeActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TicketFragment()).commit();
                 return true;
             } else if (item.getItemId() == R.id.chat) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatUserFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatClienteFragment()).commit();
                 return true;
             }
 

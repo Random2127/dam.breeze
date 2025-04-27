@@ -3,7 +3,6 @@ package com.example.breeze;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +20,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.breeze.organizador.OrganizadorHomeActivity;
-import com.example.breeze.usuario.UsuarioHomeActivity;
+import com.example.breeze.usuario.ClienteHomeActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -121,7 +120,7 @@ public class SettingsActivity extends AppCompatActivity {
                 if ("organizador".equalsIgnoreCase(userRole)) {
                     pasarPantalla = new Intent(SettingsActivity.this, OrganizadorHomeActivity.class);
                 } else {
-                    pasarPantalla = new Intent(SettingsActivity.this, UsuarioHomeActivity.class);
+                    pasarPantalla = new Intent(SettingsActivity.this, ClienteHomeActivity.class);
                 }
                 startActivity(pasarPantalla);
                 finish();

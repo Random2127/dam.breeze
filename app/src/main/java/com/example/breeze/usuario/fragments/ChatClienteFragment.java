@@ -11,19 +11,16 @@ import android.view.ViewGroup;
 import com.example.breeze.R;
 import com.example.breeze.Utils;
 
-public class HomeUserFragment extends Fragment {
+public class ChatClienteFragment extends Fragment {
 
-    public HomeUserFragment() {
+    public ChatClienteFragment() {
         // Required empty public constructor
-        super(R.layout.fragment_userhome);
     }
 
-
-    // Todos los fragmentos añaden metodo de utils para cambiar tamaño d la fuente
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_userhome, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat_cliente, container, false);
         Utils.cambioSizeTextViews(view, getContext());
         return view;
     }
