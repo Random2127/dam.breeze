@@ -58,7 +58,6 @@ public class SettingsActivity extends AppCompatActivity {
             recreate();
         });
 
-
         // Tamaño fuentes
         String [] sizes = {"Pequeño", "Mediano", "Grande"}; // opciones
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(SettingsActivity.this, android.R.layout.simple_spinner_item, sizes);
@@ -126,9 +125,5 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
     }
-
 }

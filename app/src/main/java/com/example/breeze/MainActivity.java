@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 contenidoCaja1 = caja1.getText().toString().trim();
                 contenidoCaja2 = caja2.getText().toString().trim();
-                role = gbd.comprobarCredenciales(contenidoCaja1,contenidoCaja2);
+                role = gbd.comprobarCredenciales(contenidoCaja1,contenidoCaja2, MainActivity.this);
 
                 if (role == null || role.isEmpty()) {
                     Toast.makeText(MainActivity.this,"Credenciales no válidas", Toast.LENGTH_SHORT).show();

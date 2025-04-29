@@ -7,8 +7,32 @@
     android:background="?attr/colorSurfaceContainer"
     tools:context=".organizador.fragments.CrearEventFragment">
 
+    <EditText
+        android:id="@+id/caja7_crear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:hint="Precio por entrada"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caja6_crear" />
+
     <TextView
-        android:id="@+id/texto1_crear"
+        android:id="@+id/texto7_crear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:text="Precio:"
+        app:layout_constraintEnd_toStartOf="@+id/caja5_crear"
+        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto6_crear" />
+
+    <TextView
+        android:id="@+id/textoTit_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -23,10 +47,10 @@
         android:id="@+id/caja5_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Indica el precio"
+        android:hint="Indica el lugar"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/caja4_crear" />
@@ -41,16 +65,16 @@
         android:hint="Nombre del evento.."
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto1_crear" />
+        app:layout_constraintTop_toBottomOf="@+id/textoTit_crear" />
 
     <EditText
         android:id="@+id/caja2_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Indica el lugar"
+        android:hint="Breve descripción"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/caja1_crear" />
@@ -59,7 +83,7 @@
         android:id="@+id/caja3_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Indica la fecha"
@@ -71,7 +95,7 @@
         android:id="@+id/caja4_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Indica la hora"
@@ -83,99 +107,98 @@
         android:id="@+id/caja6_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Breve descripción"
+        android:hint="Aforo"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/caja5_crear" />
 
     <TextView
-        android:id="@+id/texto2_crear"
+        android:id="@+id/texto1_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:text="Nombre del evento:"
         app:layout_constraintEnd_toStartOf="@+id/caja1_crear"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto1_crear" />
-
-    <TextView
-        android:id="@+id/texto7_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:text="Descripción: "
-        app:layout_constraintEnd_toStartOf="@+id/caja5_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto6_crear" />
-
-    <TextView
-        android:id="@+id/texto8_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:text="// AddPic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.002"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto7_crear" />
-
-    <TextView
-        android:id="@+id/texto4_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="76dp"
-        android:text="Fecha"
-        app:layout_constraintEnd_toStartOf="@+id/caja4_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto3_crear" />
-
-    <TextView
-        android:id="@+id/texto3_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:text="Ubicacion:"
-        app:layout_constraintEnd_toStartOf="@+id/caja2_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto2_crear" />
-
-    <TextView
-        android:id="@+id/texto5_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="76dp"
-        android:text="Hora: "
-        app:layout_constraintEnd_toStartOf="@+id/caja4_crear"
-        app:layout_constraintHorizontal_bias="0.017"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto4_crear" />
+        app:layout_constraintTop_toBottomOf="@+id/textoTit_crear" />
 
     <TextView
         android:id="@+id/texto6_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:text="Precio"
+        android:layout_marginTop="40dp"
+        android:text="Capacidad:"
         app:layout_constraintEnd_toStartOf="@+id/caja5_crear"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texto5_crear" />
+
+    <TextView
+        android:id="@+id/texto8_crear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="// AddPic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="544dp" />
+
+    <TextView
+        android:id="@+id/texto3_crear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="76dp"
+        android:text="Fecha"
+        app:layout_constraintEnd_toStartOf="@+id/caja4_crear"
+        app:layout_constraintHorizontal_bias="0.017"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto2_crear" />
+
+    <TextView
+        android:id="@+id/texto2_crear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="Descripción:"
+        app:layout_constraintEnd_toStartOf="@+id/caja2_crear"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto1_crear" />
+
+    <TextView
+        android:id="@+id/texto4_crear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="76dp"
+        android:text="Hora: "
+        app:layout_constraintEnd_toStartOf="@+id/caja4_crear"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto3_crear" />
+
+    <TextView
+        android:id="@+id/texto5_crear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="Ubicación:"
+        app:layout_constraintEnd_toStartOf="@+id/caja5_crear"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto4_crear" />
 
     <Button
         android:id="@+id/boton1_crear"
@@ -183,7 +206,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="112dp"
         android:text="Aceptar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

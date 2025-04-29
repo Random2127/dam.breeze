@@ -13,9 +13,6 @@
         android:theme="@style/Theme.Breeze"
         tools:targetApi="31">
         <activity
-            android:name=".organizador.Evento"
-            android:exported="false" />
-        <activity
             android:name=".usuario.Entrada"
             android:exported="false" />
         <activity

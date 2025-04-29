@@ -9,7 +9,7 @@
     tools:context=".organizador.fragments.ChatOrgFragment">
 
     <TextView
-        android:id="@+id/texto1_crear"
+        android:id="@+id/textoTit_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Chat"

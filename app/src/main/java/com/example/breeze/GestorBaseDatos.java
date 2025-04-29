@@ -2,6 +2,7 @@ package com.example.breeze;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -17,8 +18,8 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, email TEXT, password TEXT, role TEXT)");
-        db.execSQL("CREATE TABLE evento(eventoID INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT, capacidad INTEGER, organizadorID INTEGER, FOREIGN KEY (organizadorID) REFERENCES user(id))");
-        db.execSQL("CREATE TABLE ticket(ticketID INTEGER PRIMARY KEY AUTOINCREMENT, eventoID INTEGER, clienteID INTEGER, precio REAL, fechaCompra TEXT, FOREIGN KEY (eventoID) REFERENCES evento(eventoID), FOREIGN KEY (clienteID) REFERENCES user(id))");
+        db.execSQL("CREATE TABLE evento(eventoID INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT, capacidad INTEGER, precio REAL, organizadorID INTEGER, FOREIGN KEY (organizadorID) REFERENCES user(id))");
+        db.execSQL("CREATE TABLE ticket(ticketID INTEGER     PRIMARY KEY AUTOINCREMENT, eventoID INTEGER, clienteID INTEGER, precio REAL, fechaCompra TEXT, FOREIGN KEY (eventoID) REFERENCES evento(eventoID), FOREIGN KEY (clienteID) REFERENCES user(id))");
         db.execSQL("CREATE TABLE feedback(feedbackID INTEGER PRIMARY KEY AUTOINCREMENT, clienteID INTEGER, eventoID INTEGER, comentario TEXT, rating INTEGER, FOREIGN KEY (clienteID) REFERENCES user(id), FOREIGN KEY (eventoID) REFERENCES event(eventoID))");
 
         db.execSQL("INSERT INTO user VALUES (null, 'org','orga@prueba.com', 'org', 'organizador')");
@@ -35,7 +36,7 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
         }
     }
 
-    public String comprobarCredenciales(String nombre, String pass) {
+    public String comprobarCredenciales(String nombre, String pass, Context context) {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cur = db.rawQuery("SELECT * FROM user WHERE nombre= ? AND password= ?", new String[]{nombre, pass});
@@ -43,7 +44,22 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
         String role = null;
         if(cur.moveToFirst()){
             int roleIndex = cur.getColumnIndex("role");
-            if (roleIndex !=-1){
+            int idIndex = cur.getColumnIndex("id");
+            int emailIndex = cur.getColumnIndex("email");
+
+            //Compruebo que existe
+            if (roleIndex !=-1 && idIndex !=-1 && emailIndex != -1){
+                int id = cur.getInt(idIndex);
+                String email = cur.getString(emailIndex);
+                role = cur.getString(roleIndex);
+
+                SharedPreferences prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putInt("user_id", id);
+                editor.putString("name", nombre);
+                editor.putString("email", email);
+                editor.putString("role", role);
+                editor.apply();
                 return cur.getString(roleIndex).trim();
             }
         }
