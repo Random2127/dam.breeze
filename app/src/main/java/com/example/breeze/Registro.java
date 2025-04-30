@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -77,7 +78,7 @@ public class Registro extends AppCompatActivity {
                                     boolean existe = gbd.existeUser(contenido1);
                                     if (existe) {
                                         caja1.setError("El nombre ya existe");
-                                        caja1.setBackgroundColor(getResources().getColor(R.color.colorNoMatch));
+                                        caja1.setBackgroundColor(ContextCompat.getColor(Registro.this, R.color.colorNoMatch));
                                     } else {
                                         caja1.setError(null);
                                         // enter in database
@@ -87,7 +88,7 @@ public class Registro extends AppCompatActivity {
                             }
                         }
                     });
-                    caja1.setBackgroundColor(getResources().getColor(R.color.colorCompletado));
+                    caja1.setBackgroundColor(ContextCompat.getColor(Registro.this, R.color.colorCompletado));
                 }
             }
         });
@@ -108,10 +109,10 @@ public class Registro extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 contenido2 = s.toString().trim();
                 if(mailEsValido(contenido2)){
-                    caja2.setBackgroundColor(getResources().getColor(R.color.colorCompletado));
+                    caja2.setBackgroundColor(ContextCompat.getColor(Registro.this,R.color.colorCompletado));
                 } else {
                     caja2.setError("Introduce un formato válido de email");
-                    caja2.setBackgroundColor(getResources().getColor(R.color.colorVacio));
+                    caja2.setBackgroundColor(ContextCompat.getColor(Registro.this,R.color.colorVacio));
                 }
             }
         });
@@ -165,11 +166,11 @@ public class Registro extends AppCompatActivity {
         contenido4 = caja4.getText().toString().trim();
 
         if(contenido3.equals(contenido4)&& contenido3 != null){
-            caja3.setBackgroundColor(getResources().getColor(R.color.colorMatch));
-            caja4.setBackgroundColor(getResources().getColor(R.color.colorMatch));
+            caja3.setBackgroundColor(ContextCompat.getColor(Registro.this,R.color.colorMatch));
+            caja4.setBackgroundColor(ContextCompat.getColor(Registro.this,R.color.colorMatch));
         } else {
-            caja3.setBackgroundColor(getResources().getColor(R.color.colorNoMatch));
-            caja4.setBackgroundColor(getResources().getColor(R.color.colorNoMatch));
+            caja3.setBackgroundColor(ContextCompat.getColor(Registro.this,R.color.colorNoMatch));
+            caja4.setBackgroundColor(ContextCompat.getColor(Registro.this,R.color.colorNoMatch));
         }
     }
 

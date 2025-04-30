@@ -22,10 +22,10 @@
             android:name=".Registro"
             android:exported="false" />
         <activity
-            android:name=".organizador.OrganizadorHomeActivity"
+            android:name=".organizador.OrganizadorActivity"
             android:exported="true" />
         <activity
-            android:name=".usuario.ClienteHomeActivity"
+            android:name=".usuario.ClienteActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -15,8 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.breeze.organizador.OrganizadorHomeActivity;
-import com.example.breeze.usuario.ClienteHomeActivity;
+import com.example.breeze.organizador.OrganizadorActivity;
+import com.example.breeze.usuario.ClienteActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
                     editor.apply();
 
                     if (role != null && role.equalsIgnoreCase("cliente")) {
-                        pasarPantalla = new Intent(MainActivity.this, ClienteHomeActivity.class);
+                        pasarPantalla = new Intent(MainActivity.this, ClienteActivity.class);
                         startActivity(pasarPantalla);
                         finish();
                     } else if (role != null && role.equalsIgnoreCase("organizador")) {
-                        pasarPantalla = new Intent(MainActivity.this, OrganizadorHomeActivity.class);
+                        pasarPantalla = new Intent(MainActivity.this, OrganizadorActivity.class);
                         startActivity(pasarPantalla);
                         finish();
                     }

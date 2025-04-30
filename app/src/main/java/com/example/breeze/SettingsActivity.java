@@ -19,8 +19,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.breeze.organizador.OrganizadorHomeActivity;
-import com.example.breeze.usuario.ClienteHomeActivity;
+import com.example.breeze.organizador.OrganizadorActivity;
+import com.example.breeze.usuario.ClienteActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -117,9 +117,9 @@ public class SettingsActivity extends AppCompatActivity {
 
                 // If que envia a user u org segun rol
                 if ("organizador".equalsIgnoreCase(userRole)) {
-                    pasarPantalla = new Intent(SettingsActivity.this, OrganizadorHomeActivity.class);
+                    pasarPantalla = new Intent(SettingsActivity.this, OrganizadorActivity.class);
                 } else {
-                    pasarPantalla = new Intent(SettingsActivity.this, ClienteHomeActivity.class);
+                    pasarPantalla = new Intent(SettingsActivity.this, ClienteActivity.class);
                 }
                 startActivity(pasarPantalla);
                 finish();

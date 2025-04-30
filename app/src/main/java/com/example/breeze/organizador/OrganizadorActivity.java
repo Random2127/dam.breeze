@@ -22,7 +22,7 @@ import com.example.breeze.organizador.fragments.HomeOrgFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class OrganizadorHomeActivity extends AppCompatActivity {
+public class OrganizadorActivity extends AppCompatActivity {
     protected Intent pasarPantalla;
 
 
@@ -38,7 +38,7 @@ public class OrganizadorHomeActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_organizador_home);
+        setContentView(R.layout.activity_organizador);
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

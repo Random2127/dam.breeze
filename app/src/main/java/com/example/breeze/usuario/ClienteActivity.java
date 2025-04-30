@@ -22,7 +22,7 @@ import com.example.breeze.usuario.fragments.TicketFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ClienteHomeActivity extends AppCompatActivity {
+public class ClienteActivity extends AppCompatActivity {
 
     protected Intent pasarPantalla;
 
@@ -42,7 +42,7 @@ public class ClienteHomeActivity extends AppCompatActivity {
         // Esto me da full-screen
         EdgeToEdge.enable(this);
         // Determina el layout general
-        setContentView(R.layout.activity_cliente_home);
+        setContentView(R.layout.activity_cliente);
         // Move this OUTSIDE the insets block
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
