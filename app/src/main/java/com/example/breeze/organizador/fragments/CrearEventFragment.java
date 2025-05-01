@@ -1,14 +1,21 @@
 package com.example.breeze.organizador.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.PixelCopy;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
 import com.example.breeze.Event;
@@ -31,10 +38,19 @@ public class CrearEventFragment extends Fragment {
     protected Button btnBack;
 
     protected GestorBaseDatos gbd;
+    protected Intent pasarPantalla;
     protected View step1;
     protected View step2;
     protected View step3;
     protected int currentStep = 1;
+
+    protected ImageView imagenEvento;
+    protected Button btnSeleccionarImg;
+    protected Uri imagenSeleccioanda;
+
+
+    protected ActivityResultLauncher<Intent> pickImageLauncher;
+    protected Uri imagenSeleccionadaUri;
 
 
     public CrearEventFragment() {
@@ -57,17 +73,45 @@ public class CrearEventFragment extends Fragment {
 
         btnNext = (Button) view.findViewById(R.id.btnNext);
         btnBack = (Button) view.findViewById(R.id.btnBack);
+        imagenEvento = (ImageView) view.findViewById(R.id.imagenPreview);
+        btnSeleccionarImg = (Button) view.findViewById(R.id.btnSeleccionarImagen);
+        gbd = new GestorBaseDatos(getContext());
+        Utils.cambioSizeTextViews(view, getContext());
 
         //"paginas" del fragmento
         step1 = (View) view.findViewById(R.id.step1);
         step2 = (View) view.findViewById(R.id.step2);
         step3 = (View) view.findViewById(R.id.step3);
 
-        gbd = new GestorBaseDatos(getContext());
+        // Muestro solo el primer paso
+        step1.setVisibility(View.VISIBLE);
+        step2.setVisibility(View.GONE);
+        step3.setVisibility(View.GONE);
 
-        Utils.cambioSizeTextViews(view, getContext());
         btnBack.setVisibility(View.GONE);
         boton1.setVisibility(View.GONE);
+
+        // Inicializamos selector de imagenes todo guiado aqui
+        pickImageLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                        imagenSeleccionadaUri = result.getData().getData();
+                        imagenEvento.setImageURI(imagenSeleccionadaUri); // set the image preview
+                    }
+                }
+        );
+
+        //Boton para cargar imagenes
+        btnSeleccionarImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pasarPantalla = new Intent(Intent.ACTION_PICK);
+                pasarPantalla.setType("image/*");
+                pickImageLauncher.launch(pasarPantalla);
+            }
+        });
+
 
         // Como se cargan los botones y al final el de aceptar creare evento
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +120,7 @@ public class CrearEventFragment extends Fragment {
                 if (currentStep == 1) {
                     step1.setVisibility(View.GONE);
                     step2.setVisibility(View.VISIBLE);
+                    btnBack.setVisibility(View.VISIBLE);
                     currentStep = 2;
                 } else if (currentStep == 2) {
                     step2.setVisibility(View.GONE);
