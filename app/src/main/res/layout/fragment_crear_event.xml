@@ -7,198 +7,202 @@
     android:background="?attr/colorSurfaceContainer"
     tools:context=".organizador.fragments.CrearEventFragment">
 
-    <TextView
-        android:id="@+id/texto7_crear"
+    <!-- Contenedor principal-->
+    <LinearLayout
+        android:id="@+id/linearLayoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Paso 1: Nombre, Descripción, Fecha -->
+        <LinearLayout
+            android:id="@+id/step1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/texto1_crear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Nombre del evento:" />
+
+            <EditText
+                android:id="@+id/caja1_crear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del evento.."
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/texto2_crear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Descripción:" />
+
+            <EditText
+                android:id="@+id/caja2_crear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Breve descripción"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/texto3_crear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Fecha:" />
+
+            <EditText
+                android:id="@+id/caja3_crear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Indica la fecha"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/texto4_crear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Hora:" />
+
+            <EditText
+                android:id="@+id/caja4_crear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Indica la hora"
+                android:inputType="text" />
+
+
+        </LinearLayout>
+
+        <!-- Paso 2: Hora, Ubicación, Capacidad -->
+        <LinearLayout
+            android:id="@+id/step2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/texto5_crear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Ubicación:" />
+
+            <EditText
+                android:id="@+id/caja5_crear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Indica el lugar"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/texto6_crear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Capacidad:" />
+
+            <EditText
+                android:id="@+id/caja6_crear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Aforo"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/texto7_crear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Precio:" />
+
+            <EditText
+                android:id="@+id/caja7_crear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Precio"
+                android:inputType="number" />
+
+        </LinearLayout>
+
+        <!-- Paso 3: Foto -->
+        <LinearLayout
+            android:id="@+id/step3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/texto8_crear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Foto del evento:" />
+
+            <ImageView
+                android:id="@+id/imagePreview"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/add" />
+
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seleccionar imagen" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Botones de navegación -->
+    <Button
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:text="Precio:"
-        app:layout_constraintEnd_toStartOf="@+id/caja7_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto6_crear" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="Atrás"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textoTit_crear"
+    <Button
+        android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Crear nuevo evento"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="16dp"
+        android:text="Siguiente"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnBack" />
 
-    <EditText
-        android:id="@+id/caja4_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Indica la hora"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caja3_crear" />
-
-    <EditText
-        android:id="@+id/caja5_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Indica el lugar"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caja4_crear" />
-
-    <EditText
-        android:id="@+id/caja3_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="12dp"
-        android:ems="10"
-        android:hint="Indica la fecha"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caja2_crear" />
-
-    <EditText
-        android:id="@+id/caja2_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="12dp"
-        android:ems="10"
-        android:hint="Breve descripción"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caja1_crear" />
-
-    <EditText
-        android:id="@+id/caja1_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="12dp"
-        android:ems="10"
-        android:hint="Nombre del evento.."
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoTit_crear" />
-
-    <EditText
-        android:id="@+id/caja7_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Precio por entrada"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caja6_crear" />
-
-    <EditText
-        android:id="@+id/caja6_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Aforo"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caja5_crear" />
-
-    <TextView
-        android:id="@+id/texto1_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
-        android:text="Nombre del evento:"
-        app:layout_constraintEnd_toStartOf="@+id/caja1_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoTit_crear" />
-
-    <TextView
-        android:id="@+id/texto6_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:text="Capacidad:"
-        app:layout_constraintEnd_toStartOf="@+id/caja6_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto5_crear" />
-
-    <TextView
-        android:id="@+id/texto3_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:text="Fecha"
-        app:layout_constraintEnd_toStartOf="@+id/caja3_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto2_crear" />
-
-    <TextView
-        android:id="@+id/texto2_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:text="Descripción:"
-        app:layout_constraintEnd_toStartOf="@+id/caja2_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto1_crear" />
-
-    <TextView
-        android:id="@+id/texto4_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="76dp"
-        android:text="Hora: "
-        app:layout_constraintEnd_toStartOf="@+id/caja4_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto3_crear" />
-
-    <TextView
-        android:id="@+id/texto5_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:text="Ubicación:"
-        app:layout_constraintEnd_toStartOf="@+id/caja5_crear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto4_crear" />
-
+    <!-- Botón Final: Crear evento -->
     <Button
         android:id="@+id/boton1_crear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="Aceptar"
+        android:text="Crear Evento"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

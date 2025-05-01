@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.breeze.Event;
 import com.example.breeze.GestorBaseDatos;
 import com.example.breeze.R;
 import com.example.breeze.Utils;
@@ -26,8 +28,6 @@ public class CrearEventFragment extends Fragment {
     protected EditText caja7;
     protected Button boton1;
 
-
-    protected Intent pasarPantalla;
     protected GestorBaseDatos gbd;
 
 
@@ -55,25 +55,36 @@ public class CrearEventFragment extends Fragment {
         boton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nombre = caja1.getText().toString().trim();
-                String descripcion = caja2.getText().toString().trim();
-                String fecha = caja3.getText().toString().trim();
-                String hora = caja4.getText().toString().trim();
-                String ubicacion = caja5.getText().toString().trim();
-                String capacidad = caja6.getText().toString().trim();
-                String precioText = caja7.getText().toString().trim();
-                double precio = Double.parseDouble(precioText);
+
+                Event evento = new Event(
+                        caja1.getText().toString().trim(), // nombre
+                        caja2.getText().toString().trim(), // descripcion
+                        caja3.getText().toString().trim(), // fecha
+                        caja4.getText().toString().trim(), // hora
+                        caja5.getText().toString().trim(), // ubicacion
+                        Integer.parseInt(caja6.getText().toString().trim()), // capacidad
+                        Double.parseDouble(caja7.getText().toString().trim()), // precio
+                        "" // urlImagen aún no se implementa, puedes dejarlo vacío o usar null
+                );
 
 
                 SQLiteDatabase db = gbd.getWritableDatabase();
                 String sql = "INSERT INTO evento (nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, organizadorID) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-                db.execSQL(sql, new Object[]{nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, 1});
-
+                db.execSQL(sql, new Object[]{
+                        evento.getNombre(),
+                        evento.getDescripcion(),
+                        evento.getFecha(),
+                        evento.getHora(),
+                        evento.getUbicacion(),
+                        evento.getCapacidad(),
+                        evento.getPrecio(),
+                        1 // organizadorID fijo por ahora
+                });
+                Toast.makeText(requireContext(), "Evento creado correctamente", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
     }
-
 }
