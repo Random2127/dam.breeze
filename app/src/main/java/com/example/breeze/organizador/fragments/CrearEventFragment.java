@@ -1,6 +1,5 @@
 package com.example.breeze.organizador.fragments;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,7 +27,14 @@ public class CrearEventFragment extends Fragment {
     protected EditText caja7;
     protected Button boton1;
 
+    protected Button btnNext;
+    protected Button btnBack;
+
     protected GestorBaseDatos gbd;
+    protected View step1;
+    protected View step2;
+    protected View step3;
+    protected int currentStep = 1;
 
 
     public CrearEventFragment() {
@@ -41,16 +47,64 @@ public class CrearEventFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_crear_event, container, false);
 
         boton1 = (Button) view.findViewById(R.id.boton1_crear);
-        caja1 = view.findViewById(R.id.caja1_crear);
-        caja2 = view.findViewById(R.id.caja2_crear);
-        caja3 = view.findViewById(R.id.caja3_crear);
-        caja4 = view.findViewById(R.id.caja4_crear);
-        caja5 = view.findViewById(R.id.caja5_crear);
-        caja6 = view.findViewById(R.id.caja6_crear);
-        caja7 = view.findViewById(R.id.caja7_crear);
+        caja1 = (EditText) view.findViewById(R.id.caja1_crear);
+        caja2 = (EditText) view.findViewById(R.id.caja2_crear);
+        caja3 = (EditText) view.findViewById(R.id.caja3_crear);
+        caja4 = (EditText) view.findViewById(R.id.caja4_crear);
+        caja5 = (EditText) view.findViewById(R.id.caja5_crear);
+        caja6 = (EditText) view.findViewById(R.id.caja6_crear);
+        caja7 = (EditText) view.findViewById(R.id.caja7_crear);
+
+        btnNext = (Button) view.findViewById(R.id.btnNext);
+        btnBack = (Button) view.findViewById(R.id.btnBack);
+
+        //"paginas" del fragmento
+        step1 = (View) view.findViewById(R.id.step1);
+        step2 = (View) view.findViewById(R.id.step2);
+        step3 = (View) view.findViewById(R.id.step3);
+
+        gbd = new GestorBaseDatos(getContext());
 
         Utils.cambioSizeTextViews(view, getContext());
+        btnBack.setVisibility(View.GONE);
+        boton1.setVisibility(View.GONE);
 
+        // Como se cargan los botones y al final el de aceptar creare evento
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentStep == 1) {
+                    step1.setVisibility(View.GONE);
+                    step2.setVisibility(View.VISIBLE);
+                    currentStep = 2;
+                } else if (currentStep == 2) {
+                    step2.setVisibility(View.GONE);
+                    step3.setVisibility(View.VISIBLE);
+                    btnNext.setVisibility(View.GONE);
+                    btnBack.setVisibility(View.VISIBLE);
+                    boton1.setVisibility(View.VISIBLE);
+                    currentStep = 3;
+                }
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentStep == 3) {
+                    step3.setVisibility(View.GONE);
+                    step2.setVisibility(View.VISIBLE);
+                    boton1.setVisibility(View.GONE);
+                    btnNext.setVisibility(View.VISIBLE);
+                    currentStep = 2;
+                } else if (currentStep == 2) {
+                    step2.setVisibility(View.GONE);
+                    step1.setVisibility(View.VISIBLE);
+                    btnBack.setVisibility(View.VISIBLE);
+                    currentStep = 1;
+                }
+            }
+        });
         // "Aceptar" y guardar datos en DB
         boton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,8 +121,8 @@ public class CrearEventFragment extends Fragment {
                         "" // urlImagen aún no se implementa, puedes dejarlo vacío o usar null
                 );
 
-
                 SQLiteDatabase db = gbd.getWritableDatabase();
+
                 String sql = "INSERT INTO evento (nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, organizadorID) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
