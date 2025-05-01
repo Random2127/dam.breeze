@@ -20,7 +20,7 @@ public class HomeClienteFragment extends Fragment {
 
     protected ArrayList<String> evento = new ArrayList<String>();
     protected ArrayAdapter<String> adaptador;
-    protected GestorBaseDatos gbd = new GestorBaseDatos(requireContext());
+    protected GestorBaseDatos gbd;
 
     protected ListView listaEvents;
 
@@ -39,6 +39,7 @@ public class HomeClienteFragment extends Fragment {
 
         listaEvents = (ListView) view.findViewById(R.id.list_cli_home);
         // Method in Gestor to retreive all data in eventos
+        gbd = new GestorBaseDatos(requireContext());
 
         //recogemos un array con daros del evento
         evento = gbd.leerListaEventos();

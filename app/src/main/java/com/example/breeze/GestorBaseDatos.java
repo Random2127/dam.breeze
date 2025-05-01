@@ -50,7 +50,7 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
                 String fecha = cur.getString(cur.getColumnIndexOrThrow("fecha"));
                 String hora = cur.getString(cur.getColumnIndexOrThrow("hora"));
                 String ubicacion = cur.getString(cur.getColumnIndexOrThrow("ubicacion"));
-                String cantidad = cur.getString(cur.getColumnIndexOrThrow("cantidad"));
+                String cantidad = cur.getString(cur.getColumnIndexOrThrow("capacidad"));
                 lista.add(nombre + " - " + fecha + " " + hora + " @ " + ubicacion + "\n" + descripcion + "Entradas libres: " + cantidad);
 
             } while (cur.moveToNext());
@@ -87,7 +87,6 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
         }
         return role;
     }
-
 
     public boolean existeUser(String nombre) {
 

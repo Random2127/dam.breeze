@@ -3,17 +3,15 @@ package com.example.breeze.organizador.fragments;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.breeze.GestorBaseDatos;
-import com.example.breeze.MainActivity;
 import com.example.breeze.R;
 import com.example.breeze.Utils;
 
@@ -31,7 +29,6 @@ public class CrearEventFragment extends Fragment {
 
     protected Intent pasarPantalla;
     protected GestorBaseDatos gbd;
-
 
 
     public CrearEventFragment() {

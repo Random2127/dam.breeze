@@ -143,4 +143,14 @@
         android:text="Aceptar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Switch
+        android:id="@+id/switch1_registro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Organizador"
+        app:layout_constraintBottom_toTopOf="@+id/boton2_registro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caja4_registro"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
