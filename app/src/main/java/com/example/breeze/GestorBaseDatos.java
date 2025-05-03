@@ -58,6 +58,34 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
             return lista;
     }
 
+
+    public ArrayList<Event> buscaPorUbicacion(String ubicacion) {
+        ArrayList<Event> eventos = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cur = db.rawQuery("SELECT nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, urlImagen FROM evento WHERE ubicacion LIKE ?",
+                new String[]{"%" + ubicacion + "%"});
+
+        if (cur.moveToFirst()) {
+            do {
+                Event evento = new Event(
+                        cur.getString(0),
+                        cur.getString(1),
+                        cur.getString(2),
+                        cur.getString(3),
+                        cur.getString(4),
+                        cur.getInt(5),
+                        cur.getDouble(6),
+                        cur.getString(7)
+                );
+                eventos.add(evento);
+            } while (cur.moveToNext());
+        }
+        cur.close();
+        return eventos;
+    }
+
+
     public String comprobarCredenciales(String nombre, String pass, Context context) {
 
         SQLiteDatabase db = this.getReadableDatabase();

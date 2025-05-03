@@ -8,14 +8,14 @@
     tools:context=".usuario.fragments.SearchFragment">
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/buscar_ubicacion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="92dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Escribe lo que buscas.."
+        android:hint="Busca en tu ciudad.."
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -23,12 +23,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
+        android:id="@+id/lista_search"
         android:layout_width="360dp"
         android:layout_height="476dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText"
+        app:layout_constraintTop_toBottomOf="@+id/buscar_ubicacion"
         app:layout_constraintVertical_bias="0.338" />
 </androidx.constraintlayout.widget.ConstraintLayout>
