@@ -22,8 +22,6 @@ import java.util.ArrayList;
 
 public class HomeClienteFragment extends Fragment {
 
-    protected ArrayList<String> evento = new ArrayList<String>();
-    protected ArrayAdapter<String> adaptador;
     protected GestorBaseDatos gbd;
 
     protected ListView listaEvents;
