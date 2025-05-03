@@ -20,7 +20,7 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, email TEXT, password TEXT, role TEXT)");
-        db.execSQL("CREATE TABLE evento(eventoID INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT, capacidad INTEGER, precio REAL, organizadorID INTEGER, FOREIGN KEY (organizadorID) REFERENCES user(id))");
+        db.execSQL("CREATE TABLE evento(eventoID INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT, capacidad INTEGER, precio REAL, urlImagen TEXT, organizadorID INTEGER, FOREIGN KEY (organizadorID) REFERENCES user(id))");
         db.execSQL("CREATE TABLE ticket(ticketID INTEGER     PRIMARY KEY AUTOINCREMENT, eventoID INTEGER, clienteID INTEGER, fechaCompra TEXT, FOREIGN KEY (eventoID) REFERENCES evento(eventoID), FOREIGN KEY (clienteID) REFERENCES user(id))");
         db.execSQL("CREATE TABLE feedback(feedbackID INTEGER PRIMARY KEY AUTOINCREMENT, clienteID INTEGER, eventoID INTEGER, comentario TEXT, rating INTEGER, FOREIGN KEY (clienteID) REFERENCES user(id), FOREIGN KEY (eventoID) REFERENCES event(eventoID))");
 

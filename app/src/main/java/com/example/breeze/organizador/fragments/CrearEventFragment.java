@@ -155,6 +155,9 @@ public class CrearEventFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                // Convertir la Uri a String si hay
+                String uriImagenTexto = imagenSeleccionadaUri != null ? imagenSeleccionadaUri.toString() : "";
+
                 Event evento = new Event(
                         caja1.getText().toString().trim(), // nombre
                         caja2.getText().toString().trim(), // descripcion
@@ -163,13 +166,13 @@ public class CrearEventFragment extends Fragment {
                         caja5.getText().toString().trim(), // ubicacion
                         Integer.parseInt(caja6.getText().toString().trim()), // capacidad
                         Double.parseDouble(caja7.getText().toString().trim()), // precio
-                        "" // urlImagen aún no se implementa, puedes dejarlo vacío o usar null
+                       uriImagenTexto
                 );
 
                 SQLiteDatabase db = gbd.getWritableDatabase();
 
-                String sql = "INSERT INTO evento (nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, organizadorID) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO evento (nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, urlImagen, organizadorID) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 db.execSQL(sql, new Object[]{
                         evento.getNombre(),
@@ -179,9 +182,12 @@ public class CrearEventFragment extends Fragment {
                         evento.getUbicacion(),
                         evento.getCapacidad(),
                         evento.getPrecio(),
+                        evento.getUrlImagen(),
                         1 // organizadorID fijo por ahora
                 });
                 Toast.makeText(requireContext(), "Evento creado correctamente", Toast.LENGTH_SHORT).show();
+                //pasarPantalla = new Intent(CrearEventFragment.this, HomeOrgFragment.class);
+
             }
         });
         return view;
