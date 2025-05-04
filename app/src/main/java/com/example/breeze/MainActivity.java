@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected String contenidoCaja2;
 
     protected GestorBaseDatos gbd;
+    protected int user_id;
     protected String role;
     protected Intent pasarPantalla;
 
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     // Guardamos el rol para controlar pantallas
                     SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("user_id", user_id);
                     editor.putString("user_role", role);
                     editor.apply();
 

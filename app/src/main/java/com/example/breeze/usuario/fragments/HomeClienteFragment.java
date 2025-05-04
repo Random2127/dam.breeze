@@ -1,5 +1,6 @@
 package com.example.breeze.usuario.fragments;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -9,9 +10,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.breeze.CompraTicket;
 import com.example.breeze.Event;
 import com.example.breeze.EventAdapter;
 import com.example.breeze.GestorBaseDatos;
@@ -23,8 +24,9 @@ import java.util.ArrayList;
 public class HomeClienteFragment extends Fragment {
 
     protected GestorBaseDatos gbd;
-
     protected ListView listaEvents;
+
+    protected Intent pasarPantalla;
 
     public HomeClienteFragment() {
         // Required empty public constructor
@@ -64,8 +66,27 @@ public class HomeClienteFragment extends Fragment {
         }
         cursor.close();
 
+        // Nos llevamo slos datos a la pagina de compra
         EventAdapter adaptador = new EventAdapter(getContext(), eventos);
         listaEvents.setAdapter(adaptador);
+
+        listaEvents.setOnItemClickListener((parent, view1, position, id) -> {
+            Event eventoClicado = eventos.get(position);
+
+            pasarPantalla = new Intent(getActivity(), CompraTicket.class);
+
+            pasarPantalla.putExtra("nombre", eventoClicado.getNombre());
+            pasarPantalla.putExtra("descripcion", eventoClicado.getDescripcion());
+            pasarPantalla.putExtra("fecha", eventoClicado.getFecha());
+            pasarPantalla.putExtra("hora", eventoClicado.getHora());
+            pasarPantalla.putExtra("ubicacion", eventoClicado.getUbicacion());
+            pasarPantalla.putExtra("capacidad", eventoClicado.getCapacidad());
+            pasarPantalla.putExtra("precio", eventoClicado.getPrecio());
+            pasarPantalla.putExtra("urlImagen", eventoClicado.getUrlImagen());
+
+            startActivity(pasarPantalla);
+        });
+
 
         return view;
     }

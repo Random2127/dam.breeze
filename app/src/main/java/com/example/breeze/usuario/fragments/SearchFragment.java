@@ -1,5 +1,6 @@
 package com.example.breeze.usuario.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.breeze.CompraTicket;
 import com.example.breeze.Event;
 import com.example.breeze.EventAdapter;
 import com.example.breeze.GestorBaseDatos;
@@ -24,6 +26,9 @@ public class SearchFragment extends Fragment {
 
     protected GestorBaseDatos gbd;
     protected ListView listaEvents;
+    protected Intent pasarPantalla;
+    protected ArrayList<Event> eventosActuales = new ArrayList<>();
+
 
 
     public SearchFragment() {
@@ -47,20 +52,32 @@ public class SearchFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String ubicacion = s.toString().trim();
-                ArrayList<Event> filtrados = gbd.buscaPorUbicacion(ubicacion);
-                EventAdapter nuevoAdaptador = new EventAdapter(getContext(), filtrados);
-                listaEvents.setAdapter(nuevoAdaptador);
+                eventosActuales = gbd.buscaPorUbicacion(ubicacion);
+                EventAdapter adaptador = new EventAdapter(getContext(), eventosActuales);
+                listaEvents.setAdapter(adaptador);
+
+                // Levamos valores a la pag de compra
+                listaEvents.setOnItemClickListener((parent, view1, position, id) -> {
+                    Event eventoClicado = eventosActuales.get(position);
+
+                    Intent pasarPantalla = new Intent(getActivity(), CompraTicket.class);
+                    pasarPantalla.putExtra("nombre", eventoClicado.getNombre());
+                    pasarPantalla.putExtra("descripcion", eventoClicado.getDescripcion());
+                    pasarPantalla.putExtra("fecha", eventoClicado.getFecha());
+                    pasarPantalla.putExtra("hora", eventoClicado.getHora());
+                    pasarPantalla.putExtra("ubicacion", eventoClicado.getUbicacion());
+                    pasarPantalla.putExtra("capacidad", eventoClicado.getCapacidad());
+                    pasarPantalla.putExtra("precio", eventoClicado.getPrecio());
+                    pasarPantalla.putExtra("urlImagen", eventoClicado.getUrlImagen());
+
+                    startActivity(pasarPantalla);
+                });
+
             }
 
             @Override
             public void afterTextChanged(Editable s) { }
         });
-
-
-
-
-
-
         return view;
     }
 }

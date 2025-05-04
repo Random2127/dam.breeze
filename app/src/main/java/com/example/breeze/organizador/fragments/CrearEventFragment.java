@@ -1,7 +1,9 @@
 package com.example.breeze.organizador.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -53,6 +55,7 @@ public class CrearEventFragment extends Fragment {
     protected Uri imagenSeleccionadaUri;
 
 
+
     public CrearEventFragment() {
         // Required empty public constructor
     }
@@ -91,7 +94,7 @@ public class CrearEventFragment extends Fragment {
         btnBack.setVisibility(View.GONE);
         boton1.setVisibility(View.GONE);
 
-        // Inicializamos selector de imagenes todo guiado aqui
+        // Inicializamos selector de imagenes todo guiado aqui GPT
         pickImageLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -157,6 +160,9 @@ public class CrearEventFragment extends Fragment {
 
                 // Convertir la Uri a String si hay
                 String uriImagenTexto = imagenSeleccionadaUri != null ? imagenSeleccionadaUri.toString() : "";
+                // Cojo el id de sharedPrefs
+                SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                int organizerId = prefs.getInt("user_id", -1);
 
                 Event evento = new Event(
                         caja1.getText().toString().trim(), // nombre
@@ -183,7 +189,7 @@ public class CrearEventFragment extends Fragment {
                         evento.getCapacidad(),
                         evento.getPrecio(),
                         evento.getUrlImagen(),
-                        1 // organizadorID fijo por ahora
+                        organizerId
                 });
                 Toast.makeText(requireContext(), "Evento creado correctamente", Toast.LENGTH_SHORT).show();
                 //pasarPantalla = new Intent(CrearEventFragment.this, HomeOrgFragment.class);

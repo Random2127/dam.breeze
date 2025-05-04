@@ -21,7 +21,7 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, email TEXT, password TEXT, role TEXT)");
         db.execSQL("CREATE TABLE evento(eventoID INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT, capacidad INTEGER, precio REAL, urlImagen TEXT, organizadorID INTEGER, FOREIGN KEY (organizadorID) REFERENCES user(id))");
-        db.execSQL("CREATE TABLE ticket(ticketID INTEGER     PRIMARY KEY AUTOINCREMENT, eventoID INTEGER, clienteID INTEGER, fechaCompra TEXT, FOREIGN KEY (eventoID) REFERENCES evento(eventoID), FOREIGN KEY (clienteID) REFERENCES user(id))");
+        db.execSQL("CREATE TABLE ticket(ticketID INTEGER PRIMARY KEY AUTOINCREMENT, eventoID INTEGER, clienteID INTEGER, fechaCompra TEXT, FOREIGN KEY (eventoID) REFERENCES evento(eventoID), FOREIGN KEY (clienteID) REFERENCES user(id))");
         db.execSQL("CREATE TABLE feedback(feedbackID INTEGER PRIMARY KEY AUTOINCREMENT, clienteID INTEGER, eventoID INTEGER, comentario TEXT, rating INTEGER, FOREIGN KEY (clienteID) REFERENCES user(id), FOREIGN KEY (eventoID) REFERENCES event(eventoID))");
 
         db.execSQL("INSERT INTO user VALUES (null, 'org','orga@prueba.com', 'org', 'organizador')");
@@ -32,7 +32,7 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion<2) {
 
-            // Tablas de cliente y organizador para datos personales y extra. No necesarias por el momento, necesitariamos hacer DB ver 3.
+            // Tablas de cliente y organizador para datos personales y extra. No necesarias por el momento, necesitariamos hacer DB version +.
             //db.execSQL("CREATE TABLE organizador_perfil (userID INTEGER PRIMARY KEY, empresa TEXT, bio TEXT, FOREIGN KEY (userID) REFERENCES user(id))");
             //db.execSQL(" CREATE TABLE cliente_perfil (userID INTEGER PRIMARY KEY, preferencias TEXT, FOREIGN KEY (userID) REFERENCES user(id))");
         }
