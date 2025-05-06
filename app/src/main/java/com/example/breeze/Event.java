@@ -3,6 +3,7 @@ package com.example.breeze;
 // Clase que crea el objeto evento para usaar en BD y ListViews
 public class Event {
 
+    private int eventoID;
     private String nombre;
     private String descripcion;
     private String fecha;
@@ -12,8 +13,9 @@ public class Event {
     private double precio;
     private String urlImagen; //Imagen URL por ahora
 
-    public Event(String nombre, String descripcion, String fecha, String hora,
+    public Event(int eventoId, String nombre, String descripcion, String fecha, String hora,
                  String ubicacion, int capacidad, double precio, String urlImagen) {
+        this.eventoID = eventoID;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
@@ -22,6 +24,14 @@ public class Event {
         this.capacidad = capacidad;
         this.precio = precio;
         this.urlImagen = urlImagen;
+    }
+
+    public int getEventoID() {
+        return eventoID;
+    }
+
+    public void setEventoID(int eventoID) {
+        this.eventoID = eventoID;
     }
 
     public String getNombre() {

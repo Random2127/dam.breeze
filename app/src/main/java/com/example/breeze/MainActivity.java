@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Pair;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,30 +61,36 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 contenidoCaja1 = caja1.getText().toString().trim();
                 contenidoCaja2 = caja2.getText().toString().trim();
-                role = gbd.comprobarCredenciales(contenidoCaja1,contenidoCaja2, MainActivity.this);
+                // Esto paar retornar dos valores
+                Pair<String, Integer> result = gbd.comprobarCredenciales(contenidoCaja1, contenidoCaja2, MainActivity.this);
 
-                if (role == null || role.isEmpty()) {
+                if (result == null) {
                     Toast.makeText(MainActivity.this,"Credenciales no válidas", Toast.LENGTH_SHORT).show();
                 } else {
+                    role = result.first;
+                    user_id = result.second;
+
                     Toast.makeText(MainActivity.this, "Login correcto como " + role, Toast.LENGTH_SHORT).show();
 
-                    // Guardamos el rol para controlar pantallas
                     SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putInt("user_id", user_id);
                     editor.putString("user_role", role);
                     editor.apply();
 
-                    if (role != null && role.equalsIgnoreCase("cliente")) {
+                    if (role.equalsIgnoreCase("cliente")) {
                         pasarPantalla = new Intent(MainActivity.this, ClienteActivity.class);
                         startActivity(pasarPantalla);
                         finish();
-                    } else if (role != null && role.equalsIgnoreCase("organizador")) {
+                    } else if (role.equalsIgnoreCase("organizador")) {
                         pasarPantalla = new Intent(MainActivity.this, OrganizadorActivity.class);
                         startActivity(pasarPantalla);
                         finish();
                     }
                 }
+
+
+
             }
         });
 

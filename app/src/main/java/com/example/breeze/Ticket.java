@@ -1,5 +1,8 @@
 package com.example.breeze;
 
+
+// Esta clase nunca es usada aunque tenía la intencion
+// Permitiría introducir y pasar la entrada como un objeto
 public class Ticket {
 
 
@@ -8,13 +11,15 @@ public class Ticket {
     private int userId;
     private boolean usado;
     private String fechacompra;
+    private String nombreEvento;
 
-    public Ticket(String ticketId, int eventID, int userId, boolean usado, String fechacompra) {
+    public Ticket(String ticketId, int eventID, int userId, boolean usado, String fechacompra, String nombreEvento) {
         this.ticketId = ticketId;
         this.eventID = eventID;
         this.userId = userId;
         this.usado = usado;
         this.fechacompra = fechacompra;
+        this.nombreEvento = nombreEvento;
     }
 
 
@@ -56,5 +61,12 @@ public class Ticket {
 
     public void setFechacompra(String fechacompra) {
         this.fechacompra = fechacompra;
+    }
+    public String getNombreEvento() {
+        return nombreEvento;
+    }
+
+    public void setNombreEvento(String nombreEvento) {
+        this.nombreEvento = nombreEvento;
     }
 }

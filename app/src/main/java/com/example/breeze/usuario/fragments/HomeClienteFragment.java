@@ -47,19 +47,20 @@ public class HomeClienteFragment extends Fragment {
         ArrayList<Event> eventos = new ArrayList<>();
 
         SQLiteDatabase db = gbd.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, urlImagen FROM evento", null);
+        Cursor cursor = db.rawQuery("SELECT eventoID, nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, urlImagen FROM evento", null);
 
         if (cursor.moveToFirst()) {
             do {
                 Event evento = new Event(
-                        cursor.getString(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getInt(5),
-                        cursor.getDouble(6),
-                        cursor.getString(7)
+                        cursor.getInt(0),      // eventoID
+                        cursor.getString(1),   // nombre
+                        cursor.getString(2),   // descripcion
+                        cursor.getString(3),   // fecha
+                        cursor.getString(4),   // hora
+                        cursor.getString(5),   // ubicacion
+                        cursor.getInt(6),      // capacidad
+                        cursor.getDouble(7),   // precio
+                        cursor.getString(8)    // urlImagen
                 );
                 eventos.add(evento);
             } while (cursor.moveToNext());
@@ -75,6 +76,7 @@ public class HomeClienteFragment extends Fragment {
 
             pasarPantalla = new Intent(getActivity(), CompraTicket.class);
 
+            pasarPantalla.putExtra("eventoID", eventoClicado.getEventoID());
             pasarPantalla.putExtra("nombre", eventoClicado.getNombre());
             pasarPantalla.putExtra("descripcion", eventoClicado.getDescripcion());
             pasarPantalla.putExtra("fecha", eventoClicado.getFecha());

@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Pair;
+
 
 import androidx.annotation.Nullable;
 
@@ -21,11 +23,13 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, email TEXT, password TEXT, role TEXT)");
         db.execSQL("CREATE TABLE evento(eventoID INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT, capacidad INTEGER, precio REAL, urlImagen TEXT, organizadorID INTEGER, FOREIGN KEY (organizadorID) REFERENCES user(id))");
-        db.execSQL("CREATE TABLE ticket(ticketID INTEGER PRIMARY KEY AUTOINCREMENT, eventoID INTEGER, clienteID INTEGER, fechaCompra TEXT, FOREIGN KEY (eventoID) REFERENCES evento(eventoID), FOREIGN KEY (clienteID) REFERENCES user(id))");
-        db.execSQL("CREATE TABLE feedback(feedbackID INTEGER PRIMARY KEY AUTOINCREMENT, clienteID INTEGER, eventoID INTEGER, comentario TEXT, rating INTEGER, FOREIGN KEY (clienteID) REFERENCES user(id), FOREIGN KEY (eventoID) REFERENCES event(eventoID))");
+        db.execSQL("CREATE TABLE ticket(ticketID INTEGER PRIMARY KEY AUTOINCREMENT, eventoID INTEGER, clienteID INTEGER, usado INTEGER, fechaCompra TEXT, FOREIGN KEY (eventoID) REFERENCES evento(eventoID), FOREIGN KEY (clienteID) REFERENCES user(id))");
 
-        db.execSQL("INSERT INTO user VALUES (null, 'org','orga@prueba.com', 'org', 'organizador')");
-        db.execSQL("INSERT INTO user VALUES (null, 'client','user@prueba.com', 'client', 'cliente')");
+        // DB para el feedback cliente
+        //db.execSQL("CREATE TABLE feedback(feedbackID INTEGER PRIMARY KEY AUTOINCREMENT, clienteID INTEGER, eventoID INTEGER, comentario TEXT, rating INTEGER, FOREIGN KEY (clienteID) REFERENCES user(id), FOREIGN KEY (eventoID) REFERENCES event(eventoID))");
+
+        db.execSQL("INSERT INTO user VALUES (null, 'org','org@prueba.com', 'org', 'organizador')");
+        db.execSQL("INSERT INTO user VALUES (null, 'cli','cli@prueba.com', 'cli', 'cliente')");
     }
 
     @Override
@@ -63,20 +67,21 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
         ArrayList<Event> eventos = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cur = db.rawQuery("SELECT nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, urlImagen FROM evento WHERE ubicacion LIKE ?",
+        Cursor cur = db.rawQuery("SELECT int eventoId,nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, urlImagen FROM evento WHERE ubicacion LIKE ?",
                 new String[]{"%" + ubicacion + "%"});
 
         if (cur.moveToFirst()) {
             do {
                 Event evento = new Event(
-                        cur.getString(0),
+                        cur.getInt(0),
                         cur.getString(1),
                         cur.getString(2),
                         cur.getString(3),
                         cur.getString(4),
-                        cur.getInt(5),
-                        cur.getDouble(6),
-                        cur.getString(7)
+                        cur.getString(5),
+                        cur.getInt(6),
+                        cur.getDouble(7),
+                        cur.getString(8)
                 );
                 eventos.add(evento);
             } while (cur.moveToNext());
@@ -86,22 +91,19 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
     }
 
 
-    public String comprobarCredenciales(String nombre, String pass, Context context) {
-
+    public Pair<String, Integer> comprobarCredenciales(String nombre, String pass, Context context) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cur = db.rawQuery("SELECT * FROM user WHERE nombre= ? AND password= ?", new String[]{nombre, pass});
 
-        String role = null;
         if(cur.moveToFirst()){
             int roleIndex = cur.getColumnIndex("role");
             int idIndex = cur.getColumnIndex("id");
             int emailIndex = cur.getColumnIndex("email");
 
-            //Compruebo que existe
-            if (roleIndex !=-1 && idIndex !=-1 && emailIndex != -1){
+            if (roleIndex != -1 && idIndex != -1 && emailIndex != -1){
                 int id = cur.getInt(idIndex);
                 String email = cur.getString(emailIndex);
-                role = cur.getString(roleIndex);
+                String role = cur.getString(roleIndex);
 
                 SharedPreferences prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
@@ -110,10 +112,12 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
                 editor.putString("email", email);
                 editor.putString("role", role);
                 editor.apply();
-                return cur.getString(roleIndex).trim();
+
+                return new Pair<>(role.trim(), id);
             }
         }
-        return role;
+
+        return null;
     }
 
     public boolean existeUser(String nombre) {

@@ -3,6 +3,7 @@ package com.example.breeze.usuario;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -28,9 +29,14 @@ public class ClienteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         //Cargamos modo oscuro aqui, ya me vale!! :(
         // Tiene que haber una manera mejor de hacer esto!
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        Log.d("DEBUG_PREFS", "SharedPreferences user_id before TicketFragment: " + prefs.getInt("user_id", -1));
+
+        // aqui pasamos el id
+        int clienteID = prefs.getInt("user_id", -1);
         boolean darkMode = prefs.getBoolean("dark_mode", false);
 
         if (darkMode) {
@@ -66,7 +72,14 @@ public class ClienteActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SearchFragment()).commit();
                 return true;
             } else if (item.getItemId() == R.id.ticket) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TicketFragment()).commit();
+                TicketFragment ticketFragment = new TicketFragment();
+                Bundle args = new Bundle();
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+
+                args.putInt("clienteID", preferences.getInt("user_id", -1));
+                ticketFragment.setArguments(args);
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ticketFragment).commit();
                 return true;
             } else if (item.getItemId() == R.id.chat) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatClienteFragment()).commit();

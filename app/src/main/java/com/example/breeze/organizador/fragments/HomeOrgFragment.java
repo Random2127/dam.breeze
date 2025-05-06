@@ -54,24 +54,24 @@ public class HomeOrgFragment extends Fragment {
         ArrayList<Event> eventos = new ArrayList<>();
 
         SQLiteDatabase db = gbd.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, urlImagen FROM evento", null);
+        Cursor cursor = db.rawQuery("SELECT eventoID, nombre, descripcion, fecha, hora, ubicacion, capacidad, precio, urlImagen FROM evento", null);
 
         if (cursor.moveToFirst()) {
             do {
                 Event evento = new Event(
-                        cursor.getString(0),
+                        cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getInt(5),
-                        cursor.getDouble(6),
-                        cursor.getString(7)
+                        cursor.getString(5),
+                        cursor.getInt(6),
+                        cursor.getDouble(7),
+                        cursor.getString(8)
                 );
                 eventos.add(evento);
             } while (cursor.moveToNext());
         }
-        cursor.close();
 
         EventAdapter adaptador = new EventAdapter(getContext(), eventos);
         listaEvents.setAdapter(adaptador);

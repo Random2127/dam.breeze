@@ -165,6 +165,7 @@ public class CrearEventFragment extends Fragment {
                 int organizerId = prefs.getInt("user_id", -1);
 
                 Event evento = new Event(
+                        organizerId,
                         caja1.getText().toString().trim(), // nombre
                         caja2.getText().toString().trim(), // descripcion
                         caja3.getText().toString().trim(), // fecha
@@ -192,8 +193,16 @@ public class CrearEventFragment extends Fragment {
                         organizerId
                 });
                 Toast.makeText(requireContext(), "Evento creado correctamente", Toast.LENGTH_SHORT).show();
-                //pasarPantalla = new Intent(CrearEventFragment.this, HomeOrgFragment.class);
+                // Esto no ha valido (no se porqué)
+                //requireActivity().getSupportFragmentManager().popBackStack();
 
+                // Esto te devuelve al fragmento home tras añadir evento
+                Fragment homeFragment = new HomeOrgFragment();
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, homeFragment)
+                        .addToBackStack(null) // Optional: allows user to go back to CrearEventFragment
+                        .commit();
             }
         });
         return view;
