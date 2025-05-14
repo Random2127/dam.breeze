@@ -105,6 +105,9 @@ public class GestorBaseDatos extends SQLiteOpenHelper {
                 String email = cur.getString(emailIndex);
                 String role = cur.getString(roleIndex);
 
+                // Instanciamos la session
+                Session.getInstance().setSessionData(id, nombre, email, role);
+
                 SharedPreferences prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putInt("user_id", id);
